@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  render() {    
+  render() {
     return (
       <div>
         <div className="row">
           <div className="col-md-1">
-            <span style={{ fontSize: 24 , color: "black"} } className={this.getBadgeClasses()}>
+            <span style={{ fontSize: 24, color: "black" }} className={this.getBadgeClasses()}>
               {this.formatCount()}
             </span>
           </div>
@@ -37,9 +37,9 @@ class Counter extends Component {
   }
 
   getBadgeClasses = () => {
-    let classes = "badge m-2 badge-";    
+    let classes = "badge m-2 badge-";
     classes += this.props.counter.value === 0 ? "warning" : "primary";
-    return classes;    
+    return classes;
   };
 
   formatCount = () => {
