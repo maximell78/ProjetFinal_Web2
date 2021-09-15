@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 class App extends Component {
   state = {
