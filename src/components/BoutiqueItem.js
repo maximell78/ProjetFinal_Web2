@@ -16,11 +16,8 @@ class BoutiqueItem extends React.Component {
                         </div>
                         <div className="container-fluid">
                             <div className="row">
-                                <div className="col-12 pb-5">                                    
-                                    <h4>{boutiqueInfo.description} </h4>
-                                </div>
-                                <div className="col-12 pb-3">                                    
-                                    <h4 className="text-center">{boutiqueInfo.photo} </h4>
+                                <div className="col-4 pb-3">                                    
+                                    <h4 className="text-center">{boutiqueInfo.mini} </h4>
                                 </div>
                             </div>                            
                         </div>

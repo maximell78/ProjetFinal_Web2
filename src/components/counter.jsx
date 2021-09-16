@@ -1,16 +1,23 @@
 import React, { Component } from "react";
+import ModalDetail from "./ModalDetail";
+import BoutiqueList from "./BoutiqueList";
+import articles from "../services/BoutiqueData";
 
 class Counter extends Component {
   render() {
     return (
       <div>
         <div className="row">
+          <div className="col-6">
+          <BoutiqueList boutiqueItems={articles}/>
+          </div>
           <div className="col-md-1">
-            <span style={{ fontSize: 24, color: "black" }} className={this.getBadgeClasses()}>
+            <span style={{ fontSize: 24, color: "black"}} className={this.getBadgeClasses()}>
               {this.formatCount()}
             </span>
           </div>
           <div className="col-md-4">
+            <ModalDetail/>
             <button
               className="btn btn-secondary"
               onClick={() => this.props.onIncrement(this.props.counter)}
@@ -44,7 +51,7 @@ class Counter extends Component {
 
   formatCount = () => {
     const { value } = this.props.counter;
-    return value === 0 ? "Zero" : value;
+    return value === 0 ? "Zero" : value;    
   };
 }
 

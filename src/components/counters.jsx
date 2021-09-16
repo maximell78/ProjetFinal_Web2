@@ -12,7 +12,7 @@ class Counters extends Component {
       onRestart
     } = this.props;
     return (
-      <div>
+      <div>        
         <button
           className="btn btn-success m-2"
           onClick={onReset}

@@ -12,3 +12,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.img-normal {
+  width: 200px;
+  height: auto;
+}
+
+.img-mini {
+  width: 70px;
+  height: auto;
+}
+
+.bg {
+  background-color: blue;
+  width: 50; 
+  color: 'white';
+}

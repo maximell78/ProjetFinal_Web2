@@ -1,34 +1,33 @@
 import React from 'react';
-import Modal from './Modal';
+import Home from './Home'
 
-/**
- * Barre de navigation
- *
- */
 function NavBar({ totalCounters }) {
   return ( 
-  <div className="container">
+  <div className="container-fluid">
     <div className="row">
-      <div className="offset-7 col-3 navbar-brand">
-        <nav className="navbar navbar-expand-md navbar-dark ml-auto">          
-          <div className="pt-4" id="navbarSupportedContent">            
-            <ul className="navbar-nav">
-              <li>
-                <Modal/>
-              </li>                                  
-              <li className="nav-item">
-                <i className="fa fa-shopping-cart fa-lg m-2" aria-hidden="true"/>                      
-              </li>
-              <li className="nav-item">
-              <span className="badge badge-pill badge-info m-2" style={{ width: 50 }}>
-                {totalCounters}
-              </span>
-              </li>
-              <li className="nav-item">
-                <span> Items </span>
-              </li>                            
-            </ul>
-          </div>
+      <div className="offset-1 col-9">
+        <nav className="navbar navbar-expand navbar-dark">
+          <a href="/">
+            Accueil
+          </a>
+            <div className="collapse navbar-collapse pt-4 offset-7" id="navbarSupportedContent">            
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Home/>
+                </li>
+                <li className="nav-item">
+                  <i className="fa fa-shopping-cart fa-lg m-2" aria-hidden="true"/>                      
+                </li>
+                <li className="nav-item">
+                <span className="badge badge-pill m-2 bg">
+                  {totalCounters}
+                </span>
+                </li>
+                <li className="nav-item">
+                  <span> Items </span>
+                </li>                            
+              </ul>
+            </div>
         </nav>
       </div>
     </div>

@@ -5,8 +5,8 @@ function BoutiqueList(props) {
 return (
     <div>
         {props.boutiqueItems.map((boutiqueItem) => (
-            <div>
-            <BoutiqueItem boutiqueInfo={boutiqueItem} key={boutiqueItem.id} />
+            <div key={boutiqueItem.id}>
+                <BoutiqueItem boutiqueInfo={boutiqueItem} />                
             </div>
         ))}
     </div>

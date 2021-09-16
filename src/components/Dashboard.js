@@ -1,87 +1,78 @@
-import  { React, Component } from "react";
-import { logout, isLogin } from "../utils";
-import { Link } from 'react-router-dom';
-import BoutiqueList from './BoutiqueList';
-import articles from '../services/BoutiqueData';
+import React, { Component } from "react";
+import NavBar from "./navbar";
+import Counters from "./counters";
+import { getArticles } from "../services/BoutiqueData";
 
 class Dashboard extends Component {
+    state = {
+        counters: [
+        { id : 1, value: 0 },
+        { id : 2, value: 0 },
+        { id : 3, value: 0 },
+        { id : 4, value: 0 },
+        ],
+    };
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isLogin: isLogin()
-        }
-    }
-
-    handleLogout = () => {
-        logout();
+    componentDidMount() {
         this.setState({
-            isLogin: true
-        })
+            article: getArticles(),
+        });
     }
+
+    handleIncrement = (counter) => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...counters[index] };
+        counters[index].value++;
+        this.setState({ counters });
+    };
+
+    handleDecrement = (counter) => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...counters[index] };
+        counters[index].value--;
+        this.setState({ counters });
+    };
+
+    handleReset = () => {
+        const counters = this.state.counters.map((c) => {
+        c.value = 0;
+        return c;
+        });
+        this.setState({ counters });
+    };
+
+    handleDelete = (counterId) => {
+        const counters = this.state.counters.filter((c) => c.id !== counterId);
+        this.setState({ counters });
+    };
+
+    handleRestart = () => {
+        window.location.reload();
+    };
+
+
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="container-fluid text-center pb-5">
-                            <div className="row">
-                                <div className="col-12">
-                                    <h1>Météo</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="container-fluid pb-5">
-                            <div className="row">
-                                <div className="offset-2 col-3">
-                                    <p>Ajouter une ville :</p>                                
-                                </div>
-                                <div className="col-4">
-                                    <input></input>
-                                </div>
-                                <div className="col-2">
-                                    <button className="btn-primary rounded text-center">Ajouter</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <h2>Locations</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <BoutiqueList villeItems={articles} />                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="container-fluid text-center pt-5 pb-5">
-                            <div className="row">
-                                <div className="col-12">
-                                    { 
-                                        <Link><button className="btn-primary rounded text-center" onClick={() => this.handleLogout()}>Déconnection</button></Link>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>        
+            <NavBar
+            totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+            />
+            <main className="container">
+            <Counters            
+                counters={this.state.counters}
+                onReset={this.handleReset}
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
+                onDelete={this.handleDelete}
+                onRestart={this.handleRestart}
+            />
+            </main>        
+        </div>      
         );
     }
 }
-
-
 
 export default Dashboard;
